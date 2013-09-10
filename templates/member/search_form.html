@@ -6,12 +6,24 @@
     <form action="/search/" method="get">
     	<select title="search_option">
   			<option value="nickname">Nick name</option>
-  			<option value="saab">Saab</option>
+  			<option value="saab">max age</option>
   			<option value="mercedes">Mercedes</option>
   			<option value="audi">Audi</option>
 		</select>
         <input type="text" name="q">
         <input type="submit" value="Search">
     </form>
+    <p>You searched for: <strong>{{ query }} in {{ cat }}</strong></p>
+
+{	% if users %}
+    <p>Found {{ users|length }} book{{ users|pluralize }}.</p>
+    <ul>
+        {% for user in users %}
+        <li>{{ user.intro }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No user matched your search criteria.</p>
+{% endif %}
 </body>
 </html>
